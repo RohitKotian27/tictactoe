@@ -20,13 +20,19 @@
   align-items: center;
   width: 90px;
   height: 90px;
-  border: 1px solid #000;
   font-size: 2em;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .resetBtn {
   background-color: khaki;
   padding: 16px 32px;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-weight: 500;
+  font-family: inherit;
+  outline: none;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
 }

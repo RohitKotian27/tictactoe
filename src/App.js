@@ -11,22 +11,21 @@ function App() {
     const updatedPlayArea = [...playArea];
     if (!updatedPlayArea[idx] && !winner) {
       updatedPlayArea[idx] = chance;
-      const isWinner = checkForWinner(updatedPlayArea);
-      checkIfMatchTied(updatedPlayArea, isWinner);
+      checkForWinner(updatedPlayArea);
+      checkIfMatchTied(updatedPlayArea);
       setPlayArea(updatedPlayArea);
       setChance((prevChance) => (prevChance === 'X' ? 'O' : 'X'));
     }
   }
 
-  function checkIfMatchTied(updatedPlayArea, isWinner) {
+  function checkIfMatchTied(updatedPlayArea) {
     const filtered = updatedPlayArea.filter((elem) => elem);
-    if (filtered.length === inputArray.length && !isWinner) {
-      setWinner('Match is Tied');
+    if (filtered.length === inputArray.length) {
+      setWinner((prevValue) => prevValue ? prevValue : 'Match is tied');
     }
   }
 
   function checkForWinner(area) {
-    let isWinner;
     const winnerResult = [
       [0, 1, 2],
       [3, 4, 5],
@@ -40,14 +39,12 @@ function App() {
     for (let elem of winnerResult) {
       const [a, b, c] = elem;
       if (area[a] && area[a] === area[b] && area[a] === area[c]) {
-        isWinner = true;
         setWinner(
           area[a] === 'X' ? 'Winner is Player 1' : 'Winner is Player 2'
         );
         break;
       }
     }
-    return isWinner;
   }
   return (
     <div className="container">
